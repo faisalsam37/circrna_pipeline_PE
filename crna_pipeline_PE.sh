@@ -11,8 +11,9 @@ hisat2index="$DIR/index/hisat/grch38/genome"
 starindex="$DIR/index/star/grch38_v111"
 
 # Trimmomatic
-Trimmomatic="$DIR/Trimmomatic-0.39/Trimmomatic-0.39/trimmomatic-0.39.jar"
-adapters="$DIR/adapters/TruSeq3-PE.fa"
+DIRTRIM="/home/anenelab/App"
+trimmomatic="$DIRTRIM/Trimmomatic-0.39/Trimmomatic-0.39/trimmomatic-0.39.jar"
+adapters="$DIRTRIM/adapters/TruSeq3-PE.fa"
 
 # circRNA tools directories
 ciri="$DIR/CIRI_v2.0.6/CIRI2.pl"
@@ -57,7 +58,7 @@ module load perl/5.38.0-gcc-12.2.0
 module load star/2.7.1lb
 
 # Trim
-time java -jar $Trimmomatic PE -threads 24 $R1 $R2 $out1 $out1u $out2 $out2u ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:20
+time java -jar $trimmomatic PE -threads 24 $R1 $R2 $out1 $out1u $out2 $out2u ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:20
 
 # BWA output
 BoutBam=$DIR/AlignedBWA/$(basename $out1).sam
